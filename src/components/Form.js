@@ -5,9 +5,14 @@ const Form = ({
     handleChange, firstName, lastName, emailAddress , message, consent, handleSubmit, queryType, errors, firstNameRef, lastNameRef, emailAddressRef, queryTypeRef, messageRef, consentRef
 }) => {
   return (
-    <form className="Form" onSubmit={handleSubmit}>
+    <form  name="contact" method="POST" data-netlify="true" className="Form" onSubmit={handleSubmit}>
         
-        <div><h1>Contact Us</h1></div>
+        <div>
+            <h1>Contact Us</h1>
+        </div>
+
+        {/* <input type="hidden" name="form-name" value="contact"/> */}
+
         <div>
             <label htmlFor="firstName">First Name *</label>
             <input type="text" 

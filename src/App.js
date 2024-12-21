@@ -1,7 +1,5 @@
 import { useState, useRef } from "react";
 import Form from "./components/Form";
-/* import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify"; */
 
 
 function App() {
@@ -68,15 +66,29 @@ function App() {
     return isValid
   }
 
-  const showToast = (messageToast) => {
+  /* const showToast = (messageToast) => {
     alert(messageToast)
-  }
+  } */
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
     if (validateForm()) {
-      showToast("Form submitted successfully!")
+
+      const encodedData = new URLSearchParams();
+      for (const key in formData) {
+        encodedData.append(key, formData[key]);
+      }
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodedData.toString(),
+      })
+        .then(() => alert("Form successfully submitted!"))
+        .catch((error) => alert("Error submitting form", error))
+
+      /* showToast("Form submitted successfully!") */
       setFormData({
         firstName: '',
         lastName: '',
